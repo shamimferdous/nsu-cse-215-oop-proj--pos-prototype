@@ -1,0 +1,105 @@
+body {
+    background-color: var(--color-primary) !important;
+}
+
+#root {
+    margin: 1rem;
+    background-color: var(--color-white);
+    min-height: calc(100vh - 2rem);
+    border-radius: $base-radius;
+}
+
+.main {
+    height: calc(100vh - 2rem);
+    width: 100%;
+    display: flex;
+    background-color: var(--color-primary);
+}
+
+/*>>Sidebar*/
+.sidebar {
+    width: 270px;
+    min-height: 100%;
+    background-color: var(--color-primary);
+    display: flex;
+    flex-direction: column;
+
+    &__top {
+        & span {
+            font-size: 2.5rem;
+            font-weight: 500;
+            color: var(--color-white);
+            font-family: $font;
+            margin-left: 2rem;
+        }
+    }
+
+    &__middle {
+        & ul {
+            margin-top: 6rem;
+
+            & li {
+                list-style: none;
+                display: flex;
+                align-items: center;
+                color: var(--color-white);
+                font-size: 1.2rem;
+                margin-left: 2rem;
+                margin-bottom: 3.5rem;
+                & svg {
+                    margin-right: 2.5rem;
+                }
+            }
+        }
+    }
+
+    &__bottom {
+        margin-top: auto;
+        margin-bottom: 2rem;
+    }
+}
+/*<<Sidebar*/
+
+/*>>Main Content*/
+.main-content {
+    min-height: 100%;
+    width: 100%;
+    background-color: var(--color-grey);
+    border-radius: $base-radius;
+}
+
+header {
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-white);
+    border-radius: inherit;
+
+    & form {
+        display: flex;
+        align-items: center;
+        & button {
+            margin-top: 0.2rem;
+            z-index: 2;
+            margin-left: -240px;
+            border: none;
+            background-color: var(--color-grey);
+        }
+        & input {
+            width: 250px;
+            padding: 1rem;
+            border-radius: 20px;
+            z-index: 1;
+            border: none;
+            background-color: var(--color-grey);
+            padding-left: 4rem;
+            &::placeholder {
+                font-size: 1.1rem;
+                //padding-left: 3rem;
+                font-family: $font;
+            }
+        }
+    }
+}
+/*<< Main Content*/

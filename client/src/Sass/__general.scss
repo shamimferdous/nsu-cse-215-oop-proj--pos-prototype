@@ -1,0 +1,40 @@
+.user-box {
+    display: flex;
+}
+
+.icon-text {
+    display: flex;
+    align-items: center;
+    & span {
+        font-size: 1.2rem;
+    }
+}
+
+.round-bg-icon {
+    display: flex;
+    width: 35px;
+    height: 35px;
+    background-color: var(--color-grey);
+    border-radius: 100%;
+    align-items: center;
+    justify-content: center;
+    margin-left: 2rem;
+    cursor: pointer;
+    transition: 0.3s all;
+
+    &:hover {
+        & svg {
+            color: #fff;
+        }
+
+        background-color: var(--color-primary);
+    }
+
+    & svg {
+        color: var(--color-primary);
+    }
+
+    &-box {
+        display: flex;
+    }
+}
