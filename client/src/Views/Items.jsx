@@ -21,7 +21,7 @@ import { GiFoodTruck, GiHamburger } from 'react-icons/gi';
 import { FaCashRegister } from 'react-icons/fa';
 import axios from '../config/axios';
 
-const Landing = () => {
+const Items = () => {
 
     const [totalBill, setTotalBill] = useState(0);
     const [items, setItems] = useState([]);
@@ -220,4 +220,4 @@ const Landing = () => {
     );
 };
 
-export default Landing;
+export default Items;

@@ -15,15 +15,6 @@ import { IoMdNotificationsOutline } from 'react-icons/io';
 import { CgMathPercent } from 'react-icons/cg';
 
 const Layout = (props) => {
-
-    useEffect(() => {
-
-        axios.get('/characters').then(response => {
-            console.log(response.data);
-        });
-
-    }, []);
-
     return (
         <>
             <div className="main">

@@ -1,96 +1,94 @@
 import Layout from '../Components/Layout';
 import { Col, Row, Table, Tag, Space } from 'antd';
+import { useEffect, useState } from 'react';
+import axios from '../config/axios';
+import { GiFoodTruck, GiHamburger } from 'react-icons/gi';
+import { AiFillDelete } from 'react-icons/ai'
 
 
-//Table setup
-const columns = [
+const Orders = () => {
+
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    axios.get('/orders/').then(response => {
+      setOrders(response.data);
+    });
+  }, []);
+
+  //defining deleteHandler function
+  const deleteHandler = (id) => {
+    console.log(id);
+  }
+
+
+  //Table setup
+  const columns = [
     {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-      render: text => <a>{text}</a>,
+      title: 'Id',
+      dataIndex: 'id',
+      key: 'id',
     },
     {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
+      title: 'Table',
+      dataIndex: 'tableNo',
+      key: 'tableNo',
     },
     {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
+      title: 'Waiter',
+      dataIndex: 'waiter',
+      key: 'waiter',
     },
     {
-      title: 'Tags',
-      key: 'tags',
-      dataIndex: 'tags',
-      render: tags => (
-        <>
-          {tags.map(tag => {
-            let color = tag.length > 5 ? 'geekblue' : 'green';
-            if (tag === 'loser') {
-              color = 'volcano';
-            }
-            return (
-              <Tag color={color} key={tag}>
-                {tag.toUpperCase()}
-              </Tag>
-            );
-          })}
-        </>
-      ),
+      title: 'Items',
+      key: 'items',
+      dataIndex: 'items',
+    },
+    {
+      title: 'Amount',
+      key: 'totalAmount',
+      dataIndex: 'totalAmount',
+    },
+    {
+      title: 'Paid',
+      key: 'paid',
+      dataIndex: 'paid',
+    },
+    {
+      title: 'Payment Method',
+      key: 'paymentMethod',
+      dataIndex: 'paymentMethod',
     },
     {
       title: 'Action',
       key: 'action',
       render: (text, record) => (
-        <Space size="middle">
-          <a>Invite {record.name}</a>
-          <a>Delete</a>
-        </Space>
-      ),
+        <AiFillDelete style={{ cursor: 'pointer' }} onClick={() => deleteHandler(record.id)} size={20} color={'red'} />
+      )
     },
-  ];
-  
-  const data = [
-    {
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park',
-      tags: ['nice', 'developer'],
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park',
-      tags: ['loser'],
-    },
-    {
-      key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park',
-      tags: ['cool', 'teacher'],
-    },
+
+
   ];
 
 
-const Orders = () => {
-    return (
-        <>
-            <Layout>
-                <Row>
-                    <Col span={24} >
-                        <div className="cardx">
-                        <Table columns={columns} dataSource={data} />
-                        </div>
-                    </Col>
-                </Row>
-            </Layout>
-        </>
-    );
+
+  return (
+    <>
+      <Layout>
+        <Row>
+          <Col span={24} >
+            <div className="cardx">
+              <span style={{ marginTop: '2rem' }} className="the-title">
+                <GiFoodTruck size={25} />
+                            Displaying All Orders
+                </span>
+              <Table columns={columns} dataSource={orders} />
+            </div>
+          </Col>
+        </Row>
+      </Layout>
+    </>
+  );
 }
 
 export default Orders;

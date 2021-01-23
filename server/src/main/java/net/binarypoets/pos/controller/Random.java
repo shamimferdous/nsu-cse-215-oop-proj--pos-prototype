@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/api/random") //setting the base url
 @CrossOrigin(origins = "http://localhost:3000")
 public class Random {
 
