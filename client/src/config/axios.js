@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-    baseURL: 'https://www.breakingbadapi.com/api/',
+    baseURL: 'https://binary-pos-prototype.herokuapp.com',
     timeout: 5000,
     headers: {}
 });

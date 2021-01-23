@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 //importing all components
 import Layout from '../Components/Layout';
@@ -16,8 +16,19 @@ import {
     TreeSelect,
     Switch,
 } from 'antd';
+import { GiFoodTruck, GiHamburger } from 'react-icons/gi';
+import { FaCashRegister } from 'react-icons/fa';
+import axios from '../config/axios';
 
 const Landing = () => {
+
+    const [totalBill, setTotalBill] = useState(0);
+
+    useEffect(()=>{
+        axios.get('/items/').then(response=>{
+            console.log(response.data);
+        });
+    }, []);
 
     const layout = {
         labelCol: { span: 8 },
@@ -25,20 +36,73 @@ const Landing = () => {
     };
 
     //defining onFinishHandler function
-    const onFinishHandler = (value) => {
+    const onFinishOrderHandler = (value) => {
         console.log(value);
     }
     return (
         <Layout>
 
-            <Row>
-                <Col span={12}></Col>
+            <Row gutter={[20, 20]}>
                 <Col span={12}>
-                    <div className="cardx">
+                <div className="cardx">
+                        <span className="the-title">
+                            <GiHamburger size={25} />
+                            Create New Item
+                        </span>
                         <Form
                             {...layout}
                             layout="horizontal"
-                            onFinish={onFinishHandler}
+                            onFinish={onFinishOrderHandler}
+                        >
+
+                            {/* Name */}
+                            <Form.Item name={['item', 'name']} rules={[{ required: true }]} label="Enter item name">
+                                <Input />
+                            </Form.Item>
+
+                            {/* Category */}
+                            <Form.Item name={['item', 'category']} rules={[{ required: true }]} label="Select Item Category">
+                                <Select>
+                                    <Select.Option value="1">1</Select.Option>
+                                    <Select.Option value="2">2</Select.Option>
+                                    <Select.Option value="3">3</Select.Option>
+                                    <Select.Option value="4">4</Select.Option>
+                                </Select>
+                            </Form.Item>
+
+                            {/* Unit */}
+                            <Form.Item name={['item', 'unit']} rules={[{ required: true }]} label="Enter item unit">
+                                <Input />
+                            </Form.Item>
+
+                            {/* Unit Price */}
+                            <Form.Item name={['item', 'unitPrice']} rules={[{ required: true }]} label="Enter item unit price">
+                                <Input />
+                            </Form.Item>
+        
+                                <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
+                                    <Row style={{display: 'flex', alignItems: 'center'}}>
+                                        <Col span={24}>
+                                            <Button style={{ width: '100%'}} danger type="primary" htmlType="submit">
+                                                Create Item
+                                            </Button>
+                                        </Col>
+                                    </Row>
+                                </Form.Item>
+                        
+                        </Form>
+                    </div>
+                </Col>
+                <Col span={12}>
+                    <div className="cardx">
+                        <span className="the-title">
+                            <GiFoodTruck size={25} />
+                            Create New Order
+                        </span>
+                        <Form
+                            {...layout}
+                            layout="horizontal"
+                            onFinish={onFinishOrderHandler}
                         >
 
                             {/* Table No */}
@@ -77,17 +141,31 @@ const Landing = () => {
                             </Form.Item>
 
                             <Form.Item name={['order', 'paymentMethod']} label="Payment Method" >
-                                <Input type="number" />
+                                <Select>
+                                    <Select.Option value="Cash">Cash</Select.Option>
+                                    <Select.Option value="Card">Card</Select.Option>
+                                    <Select.Option value="Bkash">Bkash</Select.Option>
+                                </Select>
                             </Form.Item>
 
 
-                            <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-                                <Button type="primary" htmlType="submit">
-                                    Submit
-                                </Button>
-                            </Form.Item>
-
-
+                            <div>
+                                <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
+                                    <Row style={{display: 'flex', alignItems: 'center'}}>
+                                        <Col span={12}>
+                                            <span className="total-bill">
+                                                <FaCashRegister size={30} />
+                                                {totalBill} BDT
+                                            </span>
+                                        </Col>
+                                        <Col span={12}>
+                                            <Button style={{width: '100%'}} type="primary" danger htmlType="submit">
+                                                Create Order
+                                            </Button>
+                                        </Col>
+                                    </Row>
+                                </Form.Item>
+                            </div>
                         </Form>
                     </div>
                 </Col>

@@ -33,12 +33,12 @@ const Layout = (props) => {
                     </div>
                     <div className="sidebar__middle">
                         <ul>
-                            <Link to="/"><li style={{ color: '#0094FF' }}><GiAnchor size={20} /> Landing</li></Link>
-                            <Link to="/"><li><GiAirplaneDeparture size={20} /> Bookings</li></Link>
-                            <Link to="/"><li><MdAirplanemodeInactive size={20} /> Cancellations</li></Link>
+                            <Link to="/"><li style={{ color: '#0094FF' }}><GiAnchor size={20} /> POS Landing</li></Link>
+                            <Link to="/orders"><li><GiAirplaneDeparture size={20} /> POS Orders</li></Link>
+                            {/* <Link to="/"><li><MdAirplanemodeInactive size={20} /> Cancellations</li></Link>
                             <Link to="/"><li><RiMoneyDollarCircleFill size={20} /> Transactions</li></Link>
                             <Link to="/"><li><FaUserFriends size={20} /> Customers</li></Link>
-                            <Link to="/"><li><FaUserSecret size={20} /> Agents</li></Link>
+                            <Link to="/"><li><FaUserSecret size={20} /> Agents</li></Link> */}
                         </ul>
                     </div>
                     <div className="sidebar__bottom">
@@ -46,7 +46,7 @@ const Layout = (props) => {
                             <FaUserCircle size={40} />
                             <div style={{ marginLeft: '2rem' }} className="icon-text">
                                 <AiOutlineSetting style={{ marginRight: '.5rem' }} size={20} />
-                                <span>Shamim Ferdous</span>
+                                <span>Shamim Sayeb</span>
                             </div>
                         </div>
                     </div>

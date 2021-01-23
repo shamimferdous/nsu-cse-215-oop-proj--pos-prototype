@@ -38,3 +38,38 @@
         display: flex;
     }
 }
+
+.cardx {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: $base-radius;
+}
+
+
+.the-title {
+
+    display: flex;
+    align-items: center;
+    margin-bottom: 5rem;
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    background-color: var(--color-grey);
+    width: fit-content;
+    padding: .5rem 2rem;
+    border-radius: $base-radius;
+    margin-left: 50%;
+    transform: translateX(-50%);
+
+
+    & svg {
+        margin-right: 1rem;
+    }
+}
+
+
+.total-bill {
+    font-size: 3rem;
+    & svg {
+        margin-right: .5rem;
+    }
+}
