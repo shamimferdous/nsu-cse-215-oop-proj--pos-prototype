@@ -23,7 +23,7 @@ public class ItemController {
     @PostMapping("/")
     public ResponseEntity<Item> createItem(@RequestBody Item itemPayload) {
 
-        if(itemPayload.isValidated(itemPayload)) {
+        if(itemPayload.isValidated()) {
             Item returnPayload = itemService.create(itemPayload);
             return new ResponseEntity<Item>(returnPayload, HttpStatus.CREATED);
         } else {
@@ -46,7 +46,7 @@ public class ItemController {
     @PutMapping("/{id}")
     public ResponseEntity<Item> updateItem(@PathVariable(value = "id") Long itemId, @RequestBody Item itemPayload) throws FourOFourException {
 
-        if(itemPayload.isValidated(itemPayload)) {
+        if(itemPayload.isValidated()) {
             return  ResponseEntity.ok(itemService.update(itemId, itemPayload));
         } else {
             return ResponseEntity.badRequest().body(itemPayload);

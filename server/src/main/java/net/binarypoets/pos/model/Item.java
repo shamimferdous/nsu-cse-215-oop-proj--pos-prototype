@@ -25,8 +25,8 @@ public class Item {
 
 
     //defining the validateItem method
-    public boolean isValidated(Item item) {
-        if(item.name.isEmpty() || item.category.isEmpty() || item.unit.isEmpty() || item.unitPrice <= 100) {
+    public boolean isValidated() {
+        if(this.name.isEmpty() || this.category.isEmpty() || this.unit.isEmpty() || this.unitPrice <= 100) {
             return false;
         }
 
