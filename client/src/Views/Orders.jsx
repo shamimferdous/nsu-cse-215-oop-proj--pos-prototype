@@ -76,6 +76,9 @@ const Orders = () => {
       title: 'Paid',
       key: 'paid',
       dataIndex: 'paid',
+      render: (text, record) => (
+        <Switch checked={record.paid} />
+      )
     },
     {
       title: 'Payment Method',
