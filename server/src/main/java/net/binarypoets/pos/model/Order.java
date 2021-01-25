@@ -100,7 +100,7 @@ public class Order {
     }
 
     public void setPaid(boolean paid) {
-        paid = paid;
+        this.paid = paid;
     }
 
     public void setPaymentMethod(String paymentMethod) {
