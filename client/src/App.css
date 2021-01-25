@@ -164,7 +164,8 @@ header {
   flex-direction: column;
   cursor: pointer;
   transition: 0.3s all;
-  padding: 10rem 0; }
+  padding: 10rem 0;
+  color: var(--color-primary); }
   .cardxx:hover {
     background-color: var(--color-primary);
     color: white; }
