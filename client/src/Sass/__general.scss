@@ -45,9 +45,29 @@
     border-radius: $base-radius;
 }
 
+.cardxx {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+    transition: 0.3s all;
+    padding: 10rem 0;
+
+    &:hover {
+        background-color: var(--color-primary);
+        color: white;
+    }
+
+    & span {
+        margin-top: 4rem;
+        font-weight: 600;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+}
 
 .the-title {
-
     display: flex;
     align-items: center;
     margin-bottom: 5rem;
@@ -55,21 +75,19 @@
     font-size: 1.5rem;
     background-color: var(--color-grey);
     width: fit-content;
-    padding: .5rem 2rem;
+    padding: 0.5rem 2rem;
     border-radius: $base-radius;
     margin-left: 50%;
     transform: translateX(-50%);
-
 
     & svg {
         margin-right: 1rem;
     }
 }
 
-
 .total-bill {
     font-size: 3rem;
     & svg {
-        margin-right: .5rem;
+        margin-right: 0.5rem;
     }
 }

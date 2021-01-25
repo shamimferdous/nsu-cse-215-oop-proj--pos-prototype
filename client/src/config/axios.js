@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-    // baseURL: 'https://binary-pos-prototype.herokuapp.com',
-    baseURL: 'http://localhost:8080/api',
+    baseURL: 'https://binary-pos-prototype.herokuapp.com',
+    //baseURL: 'http://localhost:8080/api',
     timeout: 5000,
     headers: {}
 });

@@ -1,20 +1,19 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-
-import axios from '../config/axios';
+import { Link, useLocation } from 'react-router-dom';
 
 //icons
 import { GiAnchor } from 'react-icons/gi'
-import { GiAirplaneDeparture, GiTakeMyMoney } from 'react-icons/gi';
-import { MdAirplanemodeInactive } from 'react-icons/md';
-import { RiMoneyDollarCircleFill } from 'react-icons/ri';
-import { FaUserCircle, FaUserFriends, FaUserSecret } from 'react-icons/fa';
+import { GiTakeMyMoney } from 'react-icons/gi';
+import { FaUserCircle } from 'react-icons/fa';
 import { AiOutlineSetting, AiOutlineNotification } from 'react-icons/ai';
 import { BiSearch } from 'react-icons/bi';
 import { IoMdNotificationsOutline } from 'react-icons/io';
 import { CgMathPercent } from 'react-icons/cg';
+import { SiCodechef } from 'react-icons/si';
+import { FaPizzaSlice } from 'react-icons/fa';
 
 const Layout = (props) => {
+    const location = useLocation();
     return (
         <>
             <div className="main">
@@ -24,12 +23,9 @@ const Layout = (props) => {
                     </div>
                     <div className="sidebar__middle">
                         <ul>
-                            <Link to="/"><li style={{ color: '#0094FF' }}><GiAnchor size={20} /> POS Landing</li></Link>
-                            <Link to="/orders"><li><GiAirplaneDeparture size={20} /> POS Orders</li></Link>
-                            {/* <Link to="/"><li><MdAirplanemodeInactive size={20} /> Cancellations</li></Link>
-                            <Link to="/"><li><RiMoneyDollarCircleFill size={20} /> Transactions</li></Link>
-                            <Link to="/"><li><FaUserFriends size={20} /> Customers</li></Link>
-                            <Link to="/"><li><FaUserSecret size={20} /> Agents</li></Link> */}
+                            <Link to="/"><li style={{ color: location.pathname === '/' ? '#0094FF' : '#fff' }}><GiAnchor size={20} /> POS Landing </li></Link>
+                            <Link to="/orders"><li style={{ color: location.pathname === '/orders' ? '#0094FF' : '#fff' }} ><SiCodechef size={20} /> POS Orders</li></Link>
+                            <Link to="/items"><li style={{ color: location.pathname === '/items' ? '#0094FF' : '#fff' }}><FaPizzaSlice size={20} /> POS Items</li></Link>
                         </ul>
                     </div>
                     <div className="sidebar__bottom">

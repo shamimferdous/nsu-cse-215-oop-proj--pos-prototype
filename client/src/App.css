@@ -21,7 +21,8 @@ a::before {
 
 html {
   box-sizing: border-box;
-  font-size: 62.5%; }
+  font-size: 62.5%;
+  overflow-y: hidden; }
 
 body {
   font-family: "Poppins", sans-serif, sans-serif;
@@ -156,6 +157,23 @@ header {
   padding: 2rem;
   border-radius: 20px; }
 
+.cardxx {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+  transition: 0.3s all;
+  padding: 10rem 0; }
+  .cardxx:hover {
+    background-color: var(--color-primary);
+    color: white; }
+  .cardxx span {
+    margin-top: 4rem;
+    font-weight: 600;
+    font-size: 1.5rem;
+    cursor: pointer; }
+
 .the-title {
   display: flex;
   align-items: center;
@@ -164,7 +182,7 @@ header {
   font-size: 1.5rem;
   background-color: var(--color-grey);
   width: fit-content;
-  padding: .5rem 2rem;
+  padding: 0.5rem 2rem;
   border-radius: 20px;
   margin-left: 50%;
   transform: translateX(-50%); }
@@ -174,4 +192,9 @@ header {
 .total-bill {
   font-size: 3rem; }
   .total-bill svg {
-    margin-right: .5rem; }
+    margin-right: 0.5rem; }
+
+.ant-message-notice-content {
+  padding: 2.5rem !important;
+  background-color: #3f3f3f !important;
+  color: white !important; }

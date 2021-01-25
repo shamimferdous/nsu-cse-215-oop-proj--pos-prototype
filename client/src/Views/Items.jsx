@@ -15,9 +15,11 @@ import {
     InputNumber,
     TreeSelect,
     Switch,
-    message
+    message,
+    Table
 } from 'antd';
 import { GiFoodTruck, GiHamburger } from 'react-icons/gi';
+import { AiFillDelete } from 'react-icons/ai'
 import { FaCashRegister } from 'react-icons/fa';
 import axios from '../config/axios';
 
@@ -37,6 +39,16 @@ const Items = () => {
         labelCol: { span: 8 },
         wrapperCol: { span: 16 },
     };
+
+    //defining deleteHandler function
+    const deleteHandler = (id) => {
+        axios.delete(`/items/${id}`).then(response => {
+            console.log(response.data);
+            setRefresh(Math.random());
+            message.warning('Item deleted successfully');
+        })
+    }
+
 
     //defining onFinishHandler function
     const onFinishOrderHandler = (value) => {
@@ -82,6 +94,48 @@ const Items = () => {
         console.log(bill);
         setTotalBill(bill);
     }
+
+
+
+
+    //Table setup
+    const columns = [
+        {
+            title: 'Id',
+            dataIndex: 'id',
+            key: 'id',
+        },
+        {
+            title: 'Name',
+            dataIndex: 'name',
+            key: 'name',
+        },
+        {
+            title: 'Category',
+            dataIndex: 'category',
+            key: 'category',
+        },
+        {
+            title: 'Unit',
+            key: 'unit',
+            dataIndex: 'unit',
+        },
+        {
+            title: 'Unit Price',
+            key: 'unitPrice',
+            dataIndex: 'unitPrice',
+        },
+        {
+            title: 'Action',
+            key: 'action',
+            render: (text, record) => (
+                <AiFillDelete style={{ cursor: 'pointer' }} onClick={() => deleteHandler(record.id)} size={20} color={'red'} />
+            )
+        },
+
+
+    ];
+
     return (
         <Layout>
 
@@ -140,78 +194,10 @@ const Items = () => {
                     <div className="cardx">
                         <span className="the-title">
                             <GiFoodTruck size={25} />
-                            Create New Order
+                            All Items
                         </span>
-                        <Form
-                            {...layout}
-                            layout="horizontal"
-                            onFinish={onFinishOrderHandler}
-                        >
 
-                            {/* Table No */}
-                            <Form.Item name={['order', 'tableNo']} rules={[{ required: true }]} label="Select Table No">
-                                <Select>
-                                    <Select.Option value="1">1</Select.Option>
-                                    <Select.Option value="2">2</Select.Option>
-                                    <Select.Option value="3">3</Select.Option>
-                                    <Select.Option value="4">4</Select.Option>
-                                </Select>
-                            </Form.Item>
-
-                            {/* Waiter */}
-                            <Form.Item name={['order', 'waiter']} rules={[{ required: true }]} label="Select Assigned Waiter">
-                                <Select>
-                                    <Select.Option value="Shamim Ferdous">Shamim Ferdous</Select.Option>
-                                    <Select.Option value="Rayat Sayeb">Rayat Sayeb</Select.Option>
-                                    <Select.Option value="Merilyn Dip Peris">Marilyn Dip Peris</Select.Option>
-                                    <Select.Option value="Antara Labiba">Antara Labiba</Select.Option>
-                                </Select>
-                            </Form.Item>
-
-                            {/* Items */}
-                            <Form.Item name={['order', 'items']} rules={[{ required: true }]} label="Select Order Items">
-                                <Select onChange={itemOnChangeHandler} mode="multiple">
-                                    {
-                                        items.map(item => {
-                                            return <Select.Option key={item.id} value={`${item.name}-${item.unitPrice}`}>{item.name}</Select.Option>
-                                        })
-                                    }
-
-                                </Select>
-                            </Form.Item>
-
-                            {/* Paid */}
-                            <Form.Item name={['order', 'paid']} label="Is Paid?">
-                                <Switch />
-                            </Form.Item>
-
-                            <Form.Item name={['order', 'paymentMethod']} label="Payment Method" >
-                                <Select>
-                                    <Select.Option value="Cash">Cash</Select.Option>
-                                    <Select.Option value="Card">Card</Select.Option>
-                                    <Select.Option value="Bkash">Bkash</Select.Option>
-                                </Select>
-                            </Form.Item>
-
-
-                            <div>
-                                <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-                                    <Row style={{ display: 'flex', alignItems: 'center' }}>
-                                        <Col span={12}>
-                                            <span className="total-bill">
-                                                <FaCashRegister size={30} />
-                                                {totalBill} BDT
-                                            </span>
-                                        </Col>
-                                        <Col span={12}>
-                                            <Button style={{ width: '100%' }} type="primary" danger htmlType="submit">
-                                                Create Order
-                                            </Button>
-                                        </Col>
-                                    </Row>
-                                </Form.Item>
-                            </div>
-                        </Form>
+                        <Table columns={columns} dataSource={items} />
                     </div>
                 </Col>
             </Row>
